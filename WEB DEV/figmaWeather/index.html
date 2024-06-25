@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
+    />
+    <link rel="shortcut icon" href="img/icon.png" type="image/png" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>WEATHER</title>
+  </head>
+  <body>
+    <img src="img/Vector.svg" alt="vector" />
+    <img src="img/Vector1.svg" alt="vector1" />
+    <img src="img/Vector2.svg" alt="vector2" />
+    <div class="container">
+      <div class="weather-card">
+        <h1>Weather App</h1>
+        <input type="text" id="city-input" placeholder="Enter city name" value="lucknow">
+        <button id="city-input-btn" onclick="weatherFn($('#city-input').val())">
+          Get Weather
+        </button>
+        <div id="weather-info" class="animate__animated animate__fadeIn">
+          <h3 id="city-name"></h3>
+          <main class="content">
+           <p id="date" class="glassmorphism"></p>
+           <p id="temperature" class="glassmorphism"></p>
+           <p id="description" class="glassmorphism"></p>
+           <p id="wind-speed" class="glassmorphism"></p>
+          </main>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://momentjs.com/downloads/moment.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,145 @@
+body {
+	background-color: rgba(6, 19, 31, 1);
+	margin: 0;
+	font-family: 'Montserrat', sans-serif;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+img[alt="vector"] {
+	position: fixed;
+	right: 0px;
+	top: 10vh;
+	height: 60vh;
+	z-index: -10;
+}
+
+img[alt="vector1"] {
+	position: fixed;
+	left: 10vw;
+	bottom: 0px;
+	width: 35vw;
+	z-index: -10;
+}
+
+img[alt="vector2"] {
+	position: fixed;
+	right: 0px;
+	bottom: 0px;
+	width: 40vw;
+	z-index: -11;
+}
+
+.container {
+	text-align: center;
+}
+
+h1 {
+	font-size: 2.5rem;
+	color: rgb(255, 251, 246);
+}
+
+.weather-card {
+	background: none;
+	backdrop-filter: blur(10px);
+	border-radius: 20px;
+	padding: 20px;
+	box-shadow: 0 0 30px rgba(165, 112, 112, 0.1);
+	transition: transform 0.3s ease-in-out;
+	width: 30rem;
+}
+
+.weather-card:hover {
+	transform: scale(1.05);
+	backdrop-filter: blur(5px);
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+#city-input {
+	padding: 15px;
+	margin: 10px 0;
+	width: 70%;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	font-size: 16px;
+}
+
+#city-input:focus {
+	outline: none;
+	border-color: #2196F3;
+}
+
+#city-input::placeholder {
+	color: #aaa;
+}
+
+#city-input-btn {
+	padding: 10px;
+	background-color: #2196F3;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+#city-input-btn:hover {
+	background-color: #1565C0;
+}
+
+#weather-info {
+	display: none;
+}
+
+#city-name {
+	color: rgba(185, 71, 185, 0.623);
+	font-size: 1.5rem;
+}
+
+#temperature {
+	font-size: 1.25rem;
+	font-weight: bold;
+	color: rgb(157, 241, 234);
+	object-fit: contain;
+}
+
+#description {
+	color: rgb(157, 241, 234);
+	font-size: 1rem;	
+	object-fit: contain;
+}
+
+#wind-speed {
+	font-size: 1rem;
+	color: rgb(157, 241, 234);
+	object-fit: contain;
+}
+
+#date {
+	font-size: 0.75rem;
+	color: rgb(157, 241, 234);
+	object-fit: contain;
+}
+
+.content{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.glassmorphism{
+	font-weight: 600;
+	backdrop-filter: blur(10px);
+	background-color: rgba(255, 255, 255, 0.025);
+	box-shadow: 0px 0px 20px #1a6ebd73;
+	height: 6.5rem;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	object-fit: contain;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
