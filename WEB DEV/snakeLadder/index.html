@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>SNAKE LADDER GAME</title>
+</head>
+
+<body>
+    <main class="outer">
+        <main class="left">
+            <nav class="left-nav">
+                <h1>SNAKE AND LADDER</h1>
+                <button class="left-nav-restart" onclick=reset()>Restart</button>
+            </nav>
+            <main class="left-container"></main>
+            <div class="left-menu">
+                <div class="left-menu-inner"></div>
+                <div class="left-menu-inner">
+                    <div class="left-menu-die" onclick="main()">
+                        <p class="die-value">1</p>
+                        <p class="die-value">2</p>
+                        <p class="die-value">3</p>
+                        <p class="die-value">4</p>
+                        <p class="die-value">5</p>
+                        <p class="die-value">6</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <aside class="right">
+            <div class="right-player-count">
+                <h1>Number Of Players</h1>
+                <div class="right-inner">
+                    <div class="right-inner-content">
+                        <label for="one">2 Player -</label>
+                        <input type="radio" name="player-count" id="one">
+                    </div>
+                    <div class="right-inner-content">
+                        <label for="two">3 Player -</label>
+                        <input type="radio" name="player-count" id="two">
+                    </div>
+                    <div class="right-inner-content">
+                        <label for="three">4 Player -</label>
+                        <input type="radio" name="player-count" id="three">
+                    </div>
+                </div>
+            </div>
+            <div class="right-mode">
+                <h1>Mode</h1>
+                <div class="right-inner">
+                    <div class="right-inner-content">
+                        <label for="four">Player Vs Player</label>
+                        <input type="radio" name="mode" id="four">
+                    </div>
+                    <div class="right-inner-content">
+                        <label for="five">Player Vs Bot</label>
+                        <input type="radio" name="mode" id="five">
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </main>
+    <div class="burger">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+    <footer class="exit-winner">
+        <div class="winner"></div>
+        <button class="left-nav-restart" onclick=reset()>Restart</button>
+    </footer>
+    <script src="js/script1.js"></script>
+    <script src="js/mainGameControl.js"></script>
+</body>
+
+</html>
+
+</div>
