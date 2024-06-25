@@ -1,0 +1,1 @@
+modify the map.json file to be more compacted
