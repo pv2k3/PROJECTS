@@ -262,6 +262,7 @@ form .enter {
     height: min-content;
     border-radius: 5px;
     transition: height 200ms cubic-bezier(.68,-0.55,.27,1.55);
+    position: relative;
 }
 
 .card1 {
@@ -282,9 +283,10 @@ form .enter {
     margin-top: 12px;
     position: absolute;
     opacity: 0;
-    /* top: 10px; */
+    top: 2.625rem;
     /* height: 300px; */
-    /* transition: position 500ms cubic-bezier(.68,-0.55,.27,1.55);  */
+    transition: top 400ms ease-in-out;
+    /* opacity 400ms ease-in-out;  */
 }
 
 .card2 p {
