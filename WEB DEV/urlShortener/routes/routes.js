@@ -5,15 +5,11 @@ const {
     getUrlByShortId, 
     deleteByiD
 } = require("../controller/controller");
-const { model } = require("mongoose");
 const router = express.Router();
 
 router
 .get("/", (req, res)=>{
-    getAllShortIds(req, res);
-})
-.post("/", (req, res) => {
-    addUrl(req, res);
+    const urlDb = getAllShortIds(req, res);
 })
 
 router.route("/:shortUrl")

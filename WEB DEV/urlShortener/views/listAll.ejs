@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="../css/style1.css" />
+    <title>Record</title>
+  </head>
+  <body>
+    <main>
+      <h1>Record Of Generated Short URL's</h1>
+      <table>
+        <tr>
+          <th>Original URL</th>
+          <th>Short URL</th>
+          <th>Click Count</th>
+        </tr>
+        <% urls.forEach(url => { %>
+        <tr>
+          <td><%= url.normalUrl%></td>
+          <td>localhost:8000/URL/<%= url.shortUrl%></td>
+          <td><%= url.visitHistory.length%></td>
+        </tr>
+        <% }) %>
+      </table>
+    </main>
+  </body>
+</html>

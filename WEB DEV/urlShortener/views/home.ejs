@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="../css/style2.css">
+</head>
+<body>
+    <h1>URL Shortener</h1>
+    <main>
+        <form action="/" method="post">
+            <label for="url">Input URL</label>
+            <input required type="url" name="url" id="url" placeholder="https://www.example.com">
+            <button type="submit">Generate</button>
+        </form>
+        <h2>Generated Link</h2>
+        <% if (locals.url) { %>
+            <p>localhost:8000/URL/<%= url %></p>
+        <% } %>
+    </main>
+</body>
+</html>

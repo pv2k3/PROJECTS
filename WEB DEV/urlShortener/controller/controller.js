@@ -1,29 +1,26 @@
-const express = require("express")
 const {URL} = require("../models/URL")
 const shortid = require("shortid")
 
 async function getAllShortIds(req, res){
     const urlDb = await URL.find();
-    const html = `
-    <ul>
-        ${urlDb.map((url)=>`<li>${url.shortUrl} : ${url.normalUrl} : ${url.visitHistory.length}</li>`).join("")}
-    </ul>
-    `
-    res.send(html);
+    res.render("listAll", {
+        urls: urlDb
+    })
 }
 
 async function addUrl(req, res){
     const body = req.body;
-    if(!body || !body.normalUrl){
-        return res.status(400).json({msg: "All fields are required"});
+    if(!body || !body.url){
+        return res.status(400);
     }
     const result = await URL.create({
         shortUrl : shortid(),
-        normalUrl : body.normalUrl, 
+        normalUrl : body.url, 
         visitHistory: []
     })
-
-    return res.status(201).json({msg: "success"})
+    return res.status(201).render("home", {
+        url: result.shortUrl
+    })
 }
 
 async function getUrlByShortId(req, res){
