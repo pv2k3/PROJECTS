@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="shortcut icon" href="./icons-img/todo.svg" type="image/svg" />
+    <title>TODO LIST</title>
+  </head>
+  <body>
+    <div class="bg"></div>
+    <header>
+      <img src="./icons-img/todo.svg" alt="todo-app-logo" />
+      <h1><span>to</span><span>do</span></h1>
+    </header>
+    <aside class="new">
+      <input
+        type="text"
+        placeholder="Task To Add ..."
+        id="task-input"
+      />
+      <button type="submit" id="add-task">Add</button>
+    </aside>
+    <main class="taskList">
+      <header class="infoTask">
+        <section class="infoTask-left">
+          <h3>No. Of Tasks</h3>
+          <p id="taskCount">0</p>
+        </section>
+        <section class="infoTask-right">
+          <h3>Done</h3>
+          <p id="compCount">0</p>
+        </section>
+      </header>
+      <main class="created-tasks">
+        <div class="temp">
+          <img src="./icons-img/Clipboard.svg" alt="clipboard" />
+          <p>All the created tasks are shown here</p>
+        </div>
+      </main>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
