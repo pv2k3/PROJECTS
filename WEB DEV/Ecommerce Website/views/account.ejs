@@ -73,8 +73,8 @@
         </form>
         <% if (locals.item) { %>
           <main class="sect">
+            <h4>Bought Record</h4>
             <div class="content">
-              <h4>Bought Record</h4>
                 <% item.forEach(element => { %>
                   <p> <%= element._doc.productName %> </p>
                   <p> <%= element._doc.price %> </p>
@@ -85,12 +85,11 @@
         <% } %>
         <% if (locals.item2) { %>
           <main class="sect">
+            <h4>Items In Cart</h4>
             <div class="content">
-              <h4>Items In Cart</h4>
                 <% item2.forEach(element => { %>
                   <p> <%= element._doc.productName %> </p>
                   <p> <%= element._doc.price %> </p>
-                  <p> <%= element.bought_qty %> </p>
                 <% }) %>
             </div>
           </main>
