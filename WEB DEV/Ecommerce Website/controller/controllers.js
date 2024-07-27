@@ -1,29 +1,66 @@
 const {
-    User,
     Laptop,
     Desktop,
     Accessory
-} = require("../models/models")
+} = require("../models/STOCK")
+const User = require("../models/USER");
 
 const crypto = require("node:crypto");
 const { setUser } = require("../services/auth")
 const path = require("path")
+
+async function getAllUserBoughtOrCart(items) {
+
+    var itemByType = {
+        laptop: [],
+        desktop: [],
+        accessory: []
+    };
+
+    items.forEach(item => {
+        if(item.itemType == "laptop"){
+            itemByType.laptop.push((item.id))
+        }else if(item.itemType == "desktop"){
+            itemByType.desktop.push((item.id))
+        }else if(item.itemType == "accessory"){
+            itemByType.accessory.push((item.id))
+        }
+    });
+
+    const laptops = await Laptop.find({_id: {$in: itemByType.laptop}});
+    const desktops = await Desktop.find({_id: {$in: itemByType.desktop}});
+    const accessories = await Accessory.find({_id: {$in: itemByType.accessory}});
+
+    var result = [...laptops, ...desktops, ...accessories];
+
+    return result;
+}
 
 async function loginUser(req, res) {
     const body = req.body;
     if (!body || !body.email || !body.password) {
         return res.status(400);
     }
-
     const userRecord = await User.findOne({
         email: body.email
     });
+    if (!userRecord) {
+        return res.render("account", {
+            type: "login",
+            msg: "Email or Password is Wrong",
+        })
+    }
+
+    var result = await getAllUserBoughtOrCart(userRecord.itemsBought);
+    const result2 = await getAllUserBoughtOrCart(userRecord.itemsInCart);
+
 
     const hashedPassword = crypto.createHmac("sha256", userRecord.salt).update(body.password).digest("hex");
 
-    if (!userRecord || (hashedPassword!=userRecord.password)) {
+    if (hashedPassword != userRecord.password) {
         return res.render("account", {
             type: "login",
+            msg: "Email or Password is Wrong"
         })
     }
 
@@ -31,9 +68,11 @@ async function loginUser(req, res) {
 
     res.cookie("uid", token);
     return res.render("account", {
-        user : userRecord,
-        type : "user",
-        item: userRecord.itemsBought
+        user: userRecord,
+        type: "user",
+        item: result,
+        item2: result2,
+        msg: "Login is Successful"
     });
 }
 
@@ -49,22 +88,24 @@ async function addUser(req, res) {
         contact: body.contact,
         address: body.address,
         role: "NORMAL",
-        itemsBought: []
+        itemsBought: [],
+        itemsInCart: []
     })
 
+    const ans = await getAllUserBoughtOrCart(result.itemsBought);
+    const ans2 = await getAllUserBoughtOrCart(result.itemsInCart);
+    
     const token = setUser(result);
 
     res.cookie("uid", token);
 
     return res.status(201).render("account", {
         user: body,
-        item: result.itemsBought
+        item: ans,
+        item2: ans2
     })
 }
 
-// async function openPageAccount(req, res, path, parse){
-//     const user = await Laptop.users
-// }
 
 async function openPage(req, res, path, parse) {
     const laptop = await Laptop.find();
@@ -105,25 +146,29 @@ async function getItemDetails(req, res) {
 }
 
 async function addItemInDB(req, res) {
-    const type = req.query.type;
     const body = req.body;
+    const type = req.body.type;
+    const file = req.file;
+
     var result;
     if (
-        !body || !body.productName || !body.category || !body.qty || !body.price || !body.image) {
+        !body || !body.productName || !body.category || !body.qty || !body.price || !file) {
         if ((type in ["laptop", "desktop"]) && !body.processor || !body.ram || !body.storage || !body.battery || !body.graphicCard) {
-            res.status(400);
+            return res.json({ msg: "Fail" });
         }
-        else if (type == "accessory" && !body.description) {
-            res.status(400);
+        else if ((type === "accessory") && !body.description) {
+            return res.json({ msg: "Fail" });
         }
     }
+
     const nonTechInfo = {
         productName: body.productName,
         category: body.category,
         qty: body.qty,
         price: body.price,
-        image: "../img/" + body.image
+        image: `./${file.path}`
     }
+
     switch (type) {
         case "laptop":
             result = await Laptop.create({
@@ -158,7 +203,8 @@ async function addItemInDB(req, res) {
         default:
             break;
     }
-    res.status(201).json({ msg: "success" });
+
+    return res.redirect("/addItem");
 }
 
 module.exports = {
@@ -167,4 +213,5 @@ module.exports = {
     getItemDetails,
     addItemInDB,
     loginUser,
+    getAllUserBoughtOrCart
 }

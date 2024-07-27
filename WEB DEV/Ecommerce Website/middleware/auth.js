@@ -22,7 +22,7 @@ function restrictToUserAdmin(req, res, next) {
 
     const user = getUser(userUid);
 
-    if(!user || !(user.role=="ADMIN")) return res.redirect("/account/login")
+    if(!user || !(user.role=="ADMIN")) return res.redirect("/account")
     req.user = user;
     next();
 }

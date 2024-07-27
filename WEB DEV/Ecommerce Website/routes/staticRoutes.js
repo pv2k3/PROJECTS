@@ -1,15 +1,17 @@
 const express = require("express");
+
 const {
-    User,
     Accessory,
     Desktop,
     Laptop
-} = require("../models/models")
+} = require("../models/STOCK")
+const User = require("../models/USER");
 
 const {
     addUser,
     openPage,
-    loginUser
+    loginUser,
+    getAllUserBoughtOrCart
 } = require("../controller/controllers");
 const { getUser } = require("../services/auth");
 
@@ -36,17 +38,21 @@ staticRouter
                 _id: id,
             });
 
+            const result2 = await getAllUserBoughtOrCart(userRecord.itemsInCart); 
+            const result = await getAllUserBoughtOrCart(userRecord.itemsBought);
+
             res.render("account", {
                 type: "none",
                 user: userRecord,
-                item: userRecord.itemsBought
+                item: result,
+                item2: result2
             })
         }
     })
     .post("/account/login", async (req, res) => {
         loginUser(req, res);
     })
-    .get("/account/signup", (req, res)=>{
+    .get("/account/signup", (req, res) => {
         return res.render("account", {
             type: "signup"
         })
@@ -76,10 +82,16 @@ staticRouter
             category: productDetails.category,
             qty: productDetails.qty,
             price: productDetails.price,
-            image: productDetails.image,
+            image: `.${productDetails.image}`,
             specification: productDetails.specification,
             description: productDetails.description
         });
+    })
+    .get("/addItem", (req, res) => {
+        res.render("addStock")
+    })
+    .post("/logout", (req, res)=>{
+        res.clearCookie("uid").redirect("/account")
     })
 
 module.exports = staticRouter

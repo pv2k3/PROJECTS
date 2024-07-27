@@ -1,10 +1,22 @@
 const express = require("express");
 const {
-    User,
     Laptop,
     Desktop,
     Accessory
-} = require("../models/models")
+} = require("../models/STOCK")
+const User = require("../models/USER");
+
+const multer = require("multer");
+const storage = multer.diskStorage({
+    destination: function(req, file, cb){
+        cb(null, `public/uploads/${req.body.type}`)
+    },
+    filename: function(req, file, cb){
+        cb(null, `${file.originalname}`)
+    }
+})
+
+const upload = multer({storage});
 
 const {
     getItemDetails,
@@ -22,7 +34,7 @@ router.route("/products")
 .get(async (req, res)=>{
     getItemDetails(req, res);
 })
-.post(async (req, res) => {
+.post(upload.single('image'), async (req, res) => {
     addItemInDB(req, res);
 })
 

@@ -35,9 +35,13 @@
               <li><h4>Description: </h4><p><%= description %></p></li>
             </ul> 
           <% } %>
-          <div class="buy">
-            <a href= <%=`/buy?item=${id}&type=${type}` %>>Buy Now</a>
-          </div>
+          <section><div class="buy">
+              <a href= <%=`/buy?item=${id}&type=${type}` %>>Buy Now</a>
+            </div>
+            <div class="addToCart buy">
+              <a href= <%=`/buy/addToCart?item=${id}&type=${type}` %>>Add To Cart</a>
+            </div>
+          </section>
         </div>
     </main>
   </body>

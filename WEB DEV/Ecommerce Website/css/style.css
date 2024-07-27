@@ -206,6 +206,14 @@ li::before {
   width: 100%;
 }
 
+.notification{
+  background-color: green;
+  padding: 2rem;
+  margin: 1rem auto;
+  width: 20%;
+  text-align: center;
+}
+
 .container h4 {
   font-size: 1.125rem;
   margin: 0.25rem 0px;

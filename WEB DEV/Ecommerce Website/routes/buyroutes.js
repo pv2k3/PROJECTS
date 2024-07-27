@@ -1,10 +1,10 @@
 const express = require("express");
 const {
-    User,
     Laptop,
     Desktop,
     Accessory
-} = require("../models/models")
+} = require("../models/STOCK")
+const User = require("../models/USER");
 
 const {
     getItemDetails,
@@ -66,11 +66,34 @@ router.route("/")
 
 
         await User.updateOne({email: user.email}, {$push: {itemsBought: {
-            _id: product, 
+            id: product, 
             itemType: podType,
             qty: quantity
         }}})
         res.redirect("/store")
     })
+
+router.get("/addToCart", async (req, res)=>{
+    const product = req.query.item;
+    const podType = req.query.type;
+    if (podType == "laptop") {
+        productDetails = await Laptop.findById(product);
+    } else if (podType == "desktop") {
+        productDetails = await Desktop.findById(product);
+    } else if (podType == "accessory") {
+        productDetails = await Accessory.findById(product);
+    }
+    const userUid = req.cookies.uid;
+    const user = getUser(userUid);
+
+    await User.updateOne({email: user.email}, {$push: {itemsInCart: {
+        id: product, 
+        itemType: podType,
+        qty: 1
+    }}})
+
+    res.redirect("/store");
+})
+
 
 module.exports = router;

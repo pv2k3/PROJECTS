@@ -10,6 +10,8 @@
   </head>
   <body>
     <%- include('./partials/navbar') %>
+    <%- include('./partials/msg') %>
+    
     <div class="parent">
       <% if (locals.type == "signup") { %>
       <main class="sign-up-card card">
@@ -66,14 +68,33 @@
         <h2>Logged in as <%= user.userName %></h2>
         <p>Address : <%= user.address %></p>
         <p>Contact : <%= user.contact %></p>
-        <main class="sect">
-          <div class="content">
-            <h4>Bought Record</h4>
-              <% item.forEach(element => { %>
-                <p> <%= element %> </p>
-              <% }) %>
-          </div>
-        </main>
+        <form action="/logout" method="post">
+          <button type="submit">Log Out</button>
+        </form>
+        <% if (locals.item) { %>
+          <main class="sect">
+            <div class="content">
+              <h4>Bought Record</h4>
+                <% item.forEach(element => { %>
+                  <p> <%= element._doc.productName %> </p>
+                  <p> <%= element._doc.price %> </p>
+                  <p> <%= element.bought_qty %> </p>
+                <% }) %>
+            </div>
+          </main>
+        <% } %>
+        <% if (locals.item2) { %>
+          <main class="sect">
+            <div class="content">
+              <h4>Items In Cart</h4>
+                <% item2.forEach(element => { %>
+                  <p> <%= element._doc.productName %> </p>
+                  <p> <%= element._doc.price %> </p>
+                  <p> <%= element.bought_qty %> </p>
+                <% }) %>
+            </div>
+          </main>
+        <% } %>
       </main>
       <% } %>
     </div>

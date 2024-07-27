@@ -1,9 +1,10 @@
 const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
+require('dotenv').config()
+
 
 const {connectMongoDb} = require("./connection")
-const {logRecord} = require("./middleware/middleware");
 const router = require("./routes/routes");
 const staticRouter = require("./routes/staticRoutes")
 const buyRouter = require("./routes/buyroutes");
@@ -22,18 +23,12 @@ app.use(express.static(__dirname))
 app.use(express.urlencoded({extended: false}))
 
 
-connectMongoDb("mongodb://127.0.0.1:27017/ecommerce-website");
-
-const PORT = 8000;
-
-app.use((req, res, next) => {
-    logRecord(req, res, next, "log.txt");
-});
+connectMongoDb(process.env.MNG_URL);
 
 app.use("/data", restrictToUserAdmin, router);
 app.use("/", staticRouter);
 app.use("/buy", restrictToUserLogin, buyRouter);
 
-app.listen(PORT, ()=>{
+app.listen(process.env.PORT, ()=>{
     console.log("Server Started")
 })
