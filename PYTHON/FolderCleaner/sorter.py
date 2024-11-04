@@ -40,6 +40,8 @@ class Sorter:
                 # Make the folder if it does not exist
                 if not os.path.exists(destination):
                     os.makedirs(destination)
+                    shutil.move(source_file, destination)
+
             # Move the file if it is mapped
                 else:
                     try:

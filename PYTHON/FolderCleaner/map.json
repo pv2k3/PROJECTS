@@ -3,6 +3,7 @@
   ".docx": "Text Document",
   ".odt": "Text Document",
   ".txt": "Text Document",
+  ".json": "Text Document",
   ".mpg": "Videos",
   ".mpeg": "Videos",
   ".mp4": "Videos",
@@ -17,6 +18,7 @@
   ".odp": "Powerpoint",
   ".pps": "Powerpoint",
   ".gif": "Images",
+  ".webp": "Images",
   ".ico": "Images",
   ".jpeg": "Images",
   ".jpg": "Images",
@@ -29,11 +31,12 @@
   ".pkg": "Compressed",
   ".rar": "Compressed",
   ".rpm": "Compressed",
-  ".tar.gz": "Compressed",
+  ".gz": "Compressed",
   ".mp3": "Audio",
   ".pdf": "PDF",
   ".jar": "Executable",
   ".vsix": "Compressed",
   ".py": "Executable",
-  ".c": "Executable"
+  ".c": "Executable",
+  ".java": "Executable"
 }

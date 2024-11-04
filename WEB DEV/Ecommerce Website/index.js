@@ -15,7 +15,7 @@ const {
 
 const app = express();
 
-
+app.use(require('express-status-monitor')());
 app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
 app.use(cookieParser())
