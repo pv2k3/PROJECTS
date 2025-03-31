@@ -62,7 +62,7 @@ public class MainWindow extends Frame implements ActionListener {
             newPage.setBackground(Color.green);
             newPage.addLabel(50, 50, 280, 64, "Detail Validated");
             newPage.addLabel(50, 120, 280, 64, "Email : "+email);
-            newPage.addLabel(50, 190, 280, 64, "Email : "+password);
+            newPage.addLabel(50, 190, 280, 64, "Password : "+password);
         }else{
             MainWindow newPage = new MainWindow("Account", 380, 164);
             newPage.setBackground(Color.red);

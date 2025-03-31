@@ -38,5 +38,7 @@
   ".vsix": "Compressed",
   ".py": "Executable",
   ".c": "Executable",
-  ".java": "Executable"
+  ".java": "Executable",
+  ".html": "Executable",
+  ".md": "Executable"
 }
